@@ -1,0 +1,116 @@
+# ==============================================================
+#  Python
+# ==============================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+wheels/
+*.whl
+
+# PyInstaller / cx_Freeze (Phase 6 packaging)
+*.spec
+*.exe
+*.msi
+
+# ==============================================================
+#  PySide6 / Qt
+# ==============================================================
+# Compiled resource files
+*_rc.py
+*.pyc
+# Qt Designer files (if any)
+*.ui.bak
+# Qt cache
+.qt/
+
+# ==============================================================
+#  Database (never commit real patient data)
+# ==============================================================
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# ==============================================================
+#  Environment & secrets
+# ==============================================================
+.env
+.env.*
+*.env
+secrets.py
+config_local.py
+
+# ==============================================================
+#  Testing
+# ==============================================================
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+.tox/
+nosetests.xml
+
+# ==============================================================
+#  IDEs & editors
+# ==============================================================
+# VS Code
+.vscode/
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ==============================================================
+#  Windows OS
+# ==============================================================
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ==============================================================
+#  macOS (if ever developed on Mac)
+# ==============================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ==============================================================
+#  Logs & temp files
+# ==============================================================
+*.log
+*.tmp
+*.bak
+*.swp
+*~

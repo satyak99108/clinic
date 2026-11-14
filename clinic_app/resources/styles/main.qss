@@ -1,0 +1,367 @@
+/* ============================================================
+   Clinic Prescription System — Global Stylesheet
+   ============================================================ */
+
+/* ---- Base / Window ---- */
+QMainWindow, QWidget {
+    background-color: #F7F8FC;
+    color: #1C2340;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* ---- Sidebar ---- */
+#sidebar {
+    background-color: #1C2340;
+    min-width: 220px;
+    max-width: 220px;
+}
+
+/* Force all direct children of the sidebar to inherit the dark background */
+#sidebar QLabel, #sidebar QFrame {
+    background-color: transparent;
+}
+
+#sidebar_title {
+    background-color: transparent;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 24px 20px 6px 20px;
+    letter-spacing: 0.5px;
+}
+
+#sidebar_subtitle {
+    background-color: transparent;
+    color: #8A93B2;
+    font-size: 11px;
+    padding: 0px 20px 20px 20px;
+    letter-spacing: 0.3px;
+}
+
+/* ---- Sidebar Navigation Buttons ---- */
+QPushButton#nav_btn {
+    background-color: transparent;
+    color: #B0BAD4;
+    border: none;
+    border-radius: 8px;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 14px;
+    margin: 2px 10px;
+}
+
+QPushButton#nav_btn:hover {
+    background-color: #2A3357;
+    color: #FFFFFF;
+}
+
+QPushButton#nav_btn:checked {
+    background-color: #3B5BDB;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+/* ---- Content Area ---- */
+#content_area {
+    background-color: #F7F8FC;
+}
+
+/* ---- Page Header ---- */
+#page_title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1C2340;
+    padding: 0px;
+    margin: 0px;
+}
+
+#page_subtitle {
+    font-size: 13px;
+    color: #6B7399;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* ---- Cards ---- */
+QFrame#card {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    border: 1px solid #E5E9F5;
+}
+
+/* ---- Dashboard stat cards ---- */
+QFrame#stat_card {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    border: 1px solid #E5E9F5;
+    padding: 16px;
+}
+
+#stat_label {
+    color: #6B7399;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+#stat_value {
+    color: #1C2340;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#stat_icon {
+    font-size: 28px;
+}
+
+/* ---- Primary Button ---- */
+QPushButton#primary_btn {
+    background-color: #3B5BDB;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton#primary_btn:hover {
+    background-color: #3451C7;
+}
+
+QPushButton#primary_btn:pressed {
+    background-color: #2C44AE;
+}
+
+QPushButton#primary_btn:disabled {
+    background-color: #B0BAD4;
+}
+
+/* ---- Secondary Button ---- */
+QPushButton#secondary_btn {
+    background-color: #EEF2FF;
+    color: #3B5BDB;
+    border: 1px solid #C5CFE8;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton#secondary_btn:hover {
+    background-color: #DDE3FA;
+}
+
+QPushButton#secondary_btn:pressed {
+    background-color: #C5CFE8;
+}
+
+/* ---- Danger Button ---- */
+QPushButton#danger_btn {
+    background-color: #FFF0F0;
+    color: #C92A2A;
+    border: 1px solid #FFC9C9;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton#danger_btn:hover {
+    background-color: #FFE3E3;
+}
+
+/* ---- Input fields ---- */
+QLineEdit, QTextEdit, QDateEdit, QComboBox, QSpinBox {
+    background-color: #FFFFFF;
+    border: 1.5px solid #D0D7EE;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #1C2340;
+    selection-background-color: #3B5BDB;
+}
+
+QLineEdit:focus, QTextEdit:focus, QDateEdit:focus,
+QComboBox:focus, QSpinBox:focus {
+    border-color: #3B5BDB;
+    background-color: #FAFBFF;
+}
+
+QLineEdit:disabled, QTextEdit:disabled {
+    background-color: #F0F2FA;
+    color: #8A93B2;
+}
+
+QComboBox::drop-down {
+    border: none;
+    padding-right: 8px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    border: 1px solid #D0D7EE;
+    border-radius: 6px;
+    selection-background-color: #EEF2FF;
+    selection-color: #1C2340;
+    padding: 4px;
+}
+
+/* ---- Labels ---- */
+QLabel#form_label {
+    color: #4A5074;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
+
+/* ---- Notification Bars ---- */
+QFrame#msg_success {
+    background-color: #EBFBEE;
+    border: 1px solid #69DB7C;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+QFrame#msg_warning {
+    background-color: #FFF9DB;
+    border: 1px solid #FFD43B;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+QFrame#msg_error {
+    background-color: #FFF0F0;
+    border: 1px solid #FF8787;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+QLabel#msg_text_success { color: #2F9E44; font-size: 13px; }
+QLabel#msg_text_warning  { color: #E67700; font-size: 13px; }
+QLabel#msg_text_error    { color: #C92A2A; font-size: 13px; }
+
+/* ---- Table / List ---- */
+QTableWidget {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E9F5;
+    border-radius: 10px;
+    gridline-color: #F0F2FA;
+    font-size: 13px;
+}
+
+QTableWidget::item {
+    padding: 10px 12px;
+    border-bottom: 1px solid #F0F2FA;
+}
+
+QTableWidget::item:selected {
+    background-color: #EEF2FF;
+    color: #1C2340;
+}
+
+QHeaderView::section {
+    background-color: #F7F8FC;
+    color: #6B7399;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    padding: 10px 12px;
+    border: none;
+    border-bottom: 1.5px solid #E5E9F5;
+}
+
+/* ---- Scroll bars ---- */
+QScrollBar:vertical {
+    background-color: #F7F8FC;
+    width: 8px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #C5CFE8;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #A0AECE;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* ---- Separators ---- */
+QFrame[frameShape="4"],   /* HLine */
+QFrame[frameShape="5"] {  /* VLine */
+    color: #E5E9F5;
+}
+
+/* ---- Status bar ---- */
+QStatusBar {
+    background-color: #FFFFFF;
+    border-top: 1px solid #E5E9F5;
+    color: #6B7399;
+    font-size: 12px;
+}
+
+/* ============================================================
+   Phase 2 — Patient Management additions
+   ============================================================ */
+
+/* ---- Form section headers ---- */
+QLabel#section_header {
+    color: #1C2340;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+    padding-top: 4px;
+}
+
+/* ---- Read-only field value (Patient ID display) ---- */
+QLabel#form_readonly {
+    color: #3B5BDB;
+    font-weight: bold;
+    font-size: 13px;
+    background: #EEF2FF;
+    border-radius: 6px;
+    padding: 4px 10px;
+}
+
+/* ---- Table alternating row colours ---- */
+QTableWidget {
+    alternate-background-color: #F9FAFF;
+}
+
+/* ---- Checkbox ---- */
+QCheckBox {
+    color: #4A5074;
+    font-size: 13px;
+    spacing: 8px;
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1.5px solid #D0D7EE;
+    background-color: #FFFFFF;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #3B5BDB;
+    border-color: #3B5BDB;
+}
+
+/* ---- SpinBox ---- */
+QSpinBox::up-button, QSpinBox::down-button {
+    width: 20px;
+}
+
+/* ---- DateEdit calendar icon ---- */
+QDateEdit::drop-down {
+    border: none;
+    padding-right: 6px;
+}
