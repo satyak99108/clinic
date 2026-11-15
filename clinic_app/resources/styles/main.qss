@@ -157,6 +157,25 @@ QPushButton#secondary_btn:pressed {
     background-color: #C5CFE8;
 }
 
+/* Compact Action Buttons (e.g. in tables) */
+QPushButton#action_btn {
+    background-color: #EEF2FF;
+    color: #3B5BDB;
+    border: 1px solid #C5CFE8;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QPushButton#action_btn:hover {
+    background-color: #DDE3FA;
+}
+
+QPushButton#action_btn:pressed {
+    background-color: #C5CFE8;
+}
+
 /* ---- Danger Button ---- */
 QPushButton#danger_btn {
     background-color: #FFF0F0;
@@ -364,4 +383,18 @@ QSpinBox::up-button, QSpinBox::down-button {
 QDateEdit::drop-down {
     border: none;
     padding-right: 6px;
+}
+
+/* ============================================================
+   Phase 3 — Prescription Builder additions
+   ============================================================ */
+
+QFrame#medicine_row_card {
+    background-color: #FFFFFF;
+    border: 1px solid #D0D7EE;
+    border-radius: 8px;
+}
+
+QFrame#medicine_row_card:hover {
+    border-color: #A0B2E8;
 }

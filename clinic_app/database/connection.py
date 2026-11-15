@@ -85,5 +85,12 @@ def init_db():
     """Create all tables that do not yet exist. Safe to call on every startup."""
     # Import models so SQLAlchemy registers them before create_all
     import clinic_app.models.patient  # noqa: F401
+    import clinic_app.models.consultation  # noqa: F401
+    import clinic_app.models.prescription  # noqa: F401
+    import clinic_app.models.medicine  # noqa: F401
 
     Base.metadata.create_all(get_engine())
+
+    # Pre-populate common medicine catalog if empty
+    from clinic_app.services.prescription_service import seed_initial_catalog
+    seed_initial_catalog()

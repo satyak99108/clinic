@@ -119,7 +119,7 @@ class _PatientListPage(QWidget):
         self._table.setColumnWidth(2, 100)
         self._table.setColumnWidth(3, 180)
         self._table.setColumnWidth(4, 130)
-        self._table.setColumnWidth(5, 170)
+        self._table.setColumnWidth(5, 190)
 
         layout.addWidget(self._table)
 
@@ -196,17 +196,17 @@ class _PatientListPage(QWidget):
             # Action buttons in the last column
             btn_widget = QWidget()
             btn_layout = QHBoxLayout(btn_widget)
-            btn_layout.setContentsMargins(6, 4, 6, 4)
+            btn_layout.setContentsMargins(4, 4, 4, 4)
             btn_layout.setSpacing(6)
 
             view_btn = QPushButton("👁 View")
-            view_btn.setObjectName("secondary_btn")
-            view_btn.setFixedHeight(32)
+            view_btn.setObjectName("action_btn")
+            view_btn.setFixedHeight(30)
             view_btn.clicked.connect(lambda _, pt=p: self.view_requested.emit(pt))
 
             edit_btn = QPushButton("✏ Edit")
-            edit_btn.setObjectName("secondary_btn")
-            edit_btn.setFixedHeight(32)
+            edit_btn.setObjectName("action_btn")
+            edit_btn.setFixedHeight(30)
             edit_btn.clicked.connect(lambda _, pt=p: self.edit_requested.emit(pt))
 
             btn_layout.addWidget(view_btn)

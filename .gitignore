@@ -114,3 +114,13 @@ $RECYCLE.BIN/
 *.bak
 *.swp
 *~
+
+# ==============================================================
+#  AI Agent / IDE local brain & scratch dirs
+# ==============================================================
+.gemini/
+.claude/
+.cursor/
+scratch/
+brain/
+

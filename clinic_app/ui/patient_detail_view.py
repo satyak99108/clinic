@@ -29,6 +29,7 @@ from PySide6.QtWidgets import (
 )
 
 from clinic_app.models.patient import Patient
+from clinic_app.services import prescription_service
 
 
 def _info_row(label: str, value: str) -> QHBoxLayout:
@@ -211,7 +212,7 @@ class PatientDetailView(QWidget):
 
         layout.addWidget(info_card)
 
-        # ---- Consultation history (Phase 3+ placeholder) ---------------
+        # ---- Consultation history ------------------------------------
         hist_card = QFrame()
         hist_card.setObjectName("card")
         hist_layout = QVBoxLayout(hist_card)
@@ -226,14 +227,49 @@ class PatientDetailView(QWidget):
         sep3.setFrameShape(QFrame.Shape.HLine)
         hist_layout.addWidget(sep3)
 
-        empty = QLabel(
-            "No consultations recorded yet.\n"
-            "Use New Prescription to start the first consultation for this patient."
-        )
-        empty.setObjectName("page_subtitle")
-        empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        empty.setContentsMargins(0, 16, 0, 16)
-        hist_layout.addWidget(empty)
+        consultations = prescription_service.get_patient_consultations(p.id)
+        if not consultations:
+            empty = QLabel(
+                "No consultations recorded yet.\n"
+                "Use New Prescription to start the first consultation for this patient."
+            )
+            empty.setObjectName("page_subtitle")
+            empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            empty.setContentsMargins(0, 16, 0, 16)
+            hist_layout.addWidget(empty)
+        else:
+            for c in consultations:
+                c_box = QFrame()
+                c_box.setStyleSheet("background-color: #F7F8FC; border-radius: 8px; padding: 12px;")
+                c_box_layout = QVBoxLayout(c_box)
+                c_box_layout.setSpacing(6)
+
+                date_str = c.consultation_date.strftime("%d %b %Y, %I:%M %p") if c.consultation_date else "—"
+                header_lbl = QLabel(f"<b>Date:</b> {date_str}  |  <b>Diagnosis:</b> {c.diagnosis or 'Not recorded'}")
+                header_lbl.setStyleSheet("font-size: 13px; color: #1C2340;")
+                c_box_layout.addWidget(header_lbl)
+
+                if c.chief_complaints:
+                    c_box_layout.addWidget(QLabel(f"<b>Complaints:</b> {c.chief_complaints}"))
+
+                # Prescriptions under this consultation
+                if c.prescriptions:
+                    for rx in c.prescriptions:
+                        status_color = "#2F9E44" if rx.status == "Finalized" else "#E67700"
+                        rx_lbl = QLabel(
+                            f"<b>Rx Code:</b> {rx.prescription_code} "
+                            f"<span style='color:{status_color}; font-weight:bold;'>[{rx.status}]</span> "
+                            f"({len(rx.items)} medicine{'s' if len(rx.items) != 1 else ''})"
+                        )
+                        c_box_layout.addWidget(rx_lbl)
+
+                        if rx.items:
+                            med_summary = ", ".join([f"{item.medicine_name} ({item.dosage or '—'})" for item in rx.items])
+                            m_lbl = QLabel(f"<b>Medicines:</b> {med_summary}")
+                            m_lbl.setWordWrap(True)
+                            c_box_layout.addWidget(m_lbl)
+
+                hist_layout.addWidget(c_box)
 
         layout.addWidget(hist_card)
 

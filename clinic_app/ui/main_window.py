@@ -127,7 +127,7 @@ class MainWindow(QMainWindow):
         layout.addStretch()
 
         # Version label at bottom of sidebar
-        ver = QLabel("v0.1.0 · Phase 1")
+        ver = QLabel("v0.3.0 · Phase 3")
         ver.setObjectName("sidebar_subtitle")
         ver.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(ver)
@@ -154,6 +154,10 @@ class MainWindow(QMainWindow):
         # Connect dashboard shortcuts to navigation
         dashboard: DashboardView = self._pages["dashboard"]
         dashboard.navigate_requested.connect(self._navigate)
+
+        # Connect PatientsView new_prescription_requested to switch to New Prescription page
+        patients_page: PatientsView = self._pages["patients"]
+        patients_page.new_prescription_requested.connect(self._on_start_prescription_for_patient)
 
         layout.addWidget(self._stack)
         return wrapper
@@ -185,6 +189,12 @@ class MainWindow(QMainWindow):
         # Update status bar
         label = next((lbl for k, _, lbl in _NAV_ITEMS if k == key), key)
         self._status_label.setText(f"Section: {label}")
+
+    def _on_start_prescription_for_patient(self, patient):
+        """Switch to New Prescription page and pre-select the given patient."""
+        self._navigate("new_prescription")
+        presc_page: PrescriptionFormView = self._pages["new_prescription"]
+        presc_page.set_patient_for_prescription(patient)
 
     # ------------------------------------------------------------------
     # Public helpers (for future phases)
