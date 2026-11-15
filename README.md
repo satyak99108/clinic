@@ -142,6 +142,6 @@ Digital Prescription/
 - [x] **Phase 1:** Project Foundation & Application Shell
 - [x] **Phase 2:** Patient Management (SQLite Backend)
 - [x] **Phase 3:** Consultation & Prescription Builder
-- [ ] **Phase 4:** Prescription Template, PDF Generation & Printing
+- [x] **Phase 4:** Prescription Template, PDF Generation & Printing
 - [ ] **Phase 5:** Prescription History & Retrieval
 - [ ] **Phase 6:** Clinic Settings, Backup/Restore, Security & Windows Packaging

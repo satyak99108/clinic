@@ -30,6 +30,7 @@ from PySide6.QtWidgets import (
 
 from clinic_app.models.patient import Patient
 from clinic_app.services import prescription_service
+from clinic_app.ui.prescription_preview_dialog import PrescriptionPreviewDialog
 
 
 def _info_row(label: str, value: str) -> QHBoxLayout:
@@ -256,12 +257,20 @@ class PatientDetailView(QWidget):
                 if c.prescriptions:
                     for rx in c.prescriptions:
                         status_color = "#2F9E44" if rx.status == "Finalized" else "#E67700"
+                        rx_row = QHBoxLayout()
                         rx_lbl = QLabel(
                             f"<b>Rx Code:</b> {rx.prescription_code} "
                             f"<span style='color:{status_color}; font-weight:bold;'>[{rx.status}]</span> "
                             f"({len(rx.items)} medicine{'s' if len(rx.items) != 1 else ''})"
                         )
-                        c_box_layout.addWidget(rx_lbl)
+                        rx_row.addWidget(rx_lbl, stretch=1)
+
+                        print_btn = QPushButton("🖨 View / Print")
+                        print_btn.setObjectName("action_btn")
+                        print_btn.clicked.connect(lambda _, rx_obj=rx: self._open_prescription_preview(rx_obj))
+                        rx_row.addWidget(print_btn)
+
+                        c_box_layout.addLayout(rx_row)
 
                         if rx.items:
                             med_summary = ", ".join([f"{item.medicine_name} ({item.dosage or '—'})" for item in rx.items])
@@ -276,3 +285,8 @@ class PatientDetailView(QWidget):
         layout.addSpacerItem(
             QSpacerItem(0, 0, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         )
+
+    def _open_prescription_preview(self, prescription):
+        """Open print & preview dialog for the historical prescription."""
+        dlg = PrescriptionPreviewDialog(prescription, self)
+        dlg.exec()

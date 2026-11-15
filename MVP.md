@@ -354,18 +354,18 @@ clinic's sample layout.
 
 ### Tasks
 
-- [ ] Create a reusable A4 prescription template using HTML and CSS.
-- [ ] Add clinic logo, name, address, and contact information.
-- [ ] Add doctor name, qualifications, and registration number.
-- [ ] Add patient details and prescription date.
-- [ ] Display complaints, observations, investigations, and diagnosis.
-- [ ] Display medicines in a clean table.
-- [ ] Add remarks and follow-up details.
-- [ ] Add an authorised signature area.
-- [ ] Add a computer-generated document footer if desired.
-- [ ] Preview the prescription before finalizing.
-- [ ] Export the prescription as PDF.
-- [ ] Support printing through the Windows print dialog.
+- [x] Create a reusable A4 prescription template using HTML and CSS.
+- [x] Add clinic logo, name, address, and contact information.
+- [x] Add doctor name, qualifications, and registration number.
+- [x] Add patient details and prescription date.
+- [x] Display complaints, observations, investigations, and diagnosis.
+- [x] Display medicines in a clean table.
+- [x] Add remarks and follow-up details.
+- [x] Add an authorised signature area.
+- [x] Add a computer-generated document footer if desired.
+- [x] Preview the prescription before finalizing.
+- [x] Export the prescription as PDF.
+- [x] Support printing through the Windows print dialog.
 
 ### Completion criteria
 

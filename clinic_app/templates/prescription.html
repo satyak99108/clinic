@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm 15mm 15mm;
+  }
+
+  body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    background: #ffffff;
+  }
+
+  /* ==============================================================
+     HEADER (Exact match to B.D. Medical Centre Letterhead)
+     ============================================================== */
+  .letterhead-header {
+    border-bottom: 2px solid #222222;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  .clinic-branding-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .clinic-logo {
+    position: absolute;
+    left: 10px;
+    top: -2px;
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  .clinic-title-block {
+    text-align: center;
+  }
+
+  .clinic-name {
+    font-size: 26px;
+    font-weight: 800;
+    color: #b31b25; /* Red branding from sample */
+    letter-spacing: 0.5px;
+    margin: 0 0 4px 0;
+  }
+
+  .clinic-address {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333333;
+    margin: 0;
+  }
+
+  .doctors-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 4px;
+  }
+
+  .doc-left {
+    text-align: left;
+  }
+
+  .doc-right {
+    text-align: right;
+  }
+
+  .doc-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #b31b25;
+    margin: 0 0 2px 0;
+  }
+
+  .doc-sub {
+    font-size: 11.5px;
+    font-weight: bold;
+    color: #222222;
+    margin: 0 0 1px 0;
+  }
+
+  /* ==============================================================
+     PATIENT STRIP & VITALS
+     ============================================================== */
+  .patient-strip {
+    background-color: #f7f9fc;
+    border: 1px solid #dce2ee;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+  }
+
+  .patient-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .patient-table td {
+    padding: 3px 6px;
+    vertical-align: top;
+  }
+
+  .pt-label {
+    font-weight: bold;
+    color: #555555;
+    width: 90px;
+  }
+
+  .pt-val {
+    font-weight: 600;
+    color: #111111;
+  }
+
+  /* ==============================================================
+     CLINICAL NOTES (COMPLAINTS, VITALS, DIAGNOSIS)
+     ============================================================== */
+  .clinical-summary {
+    margin-bottom: 14px;
+  }
+
+  .section-tag {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #4a5568;
+    background: #edf2f7;
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-right: 6px;
+  }
+
+  .clinical-line {
+    margin: 4px 0;
+    font-size: 12.5px;
+  }
+
+  /* ==============================================================
+     RX SYMBOL & MEDICINES TABLE
+     ============================================================== */
+  .rx-heading {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 26px;
+    font-weight: bold;
+    color: #b31b25;
+    margin: 8px 0 6px 0;
+    display: inline-block;
+  }
+
+  .meds-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 4px;
+    margin-bottom: 18px;
+  }
+
+  .meds-table th {
+    background-color: #f1f4f9;
+    color: #334155;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-top: 1px solid #cbd5e1;
+    border-bottom: 1.5px solid #94a3b8;
+    padding: 6px 8px;
+    text-align: left;
+  }
+
+  .meds-table td {
+    padding: 8px 8px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+    font-size: 12.5px;
+  }
+
+  .med-name {
+    font-weight: bold;
+    color: #0f172a;
+    font-size: 13px;
+  }
+
+  .med-form {
+    display: inline-block;
+    background-color: #e2e8f0;
+    color: #334155;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-left: 4px;
+  }
+
+  .med-dosage {
+    font-weight: 600;
+    color: #1e3a8a;
+  }
+
+  .med-instructions {
+    color: #475569;
+    font-style: italic;
+  }
+
+  /* ==============================================================
+     ADVICE, REMARKS, FOLLOW-UP & SIGNATURE
+     ============================================================== */
+  .bottom-clinical-block {
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+
+  .advice-line {
+    margin: 5px 0;
+    font-size: 12.5px;
+  }
+
+  .signature-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 35px;
+    padding-right: 20px;
+  }
+
+  .signature-box {
+    text-align: center;
+    width: 200px;
+  }
+
+  .signature-line {
+    border-top: 1.5px solid #444444;
+    margin-bottom: 4px;
+  }
+
+  .signature-text {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333333;
+  }
+
+  /* ==============================================================
+     FOOTER (Exact match to B.D. Medical Centre Letterhead)
+     ============================================================== */
+  .letterhead-footer {
+    border-top: 1.5px solid #222222;
+    padding-top: 6px;
+    text-align: center;
+    position: relative;
+    margin-top: 25px;
+  }
+
+  .contact-line {
+    font-size: 12.5px;
+    font-weight: bold;
+    color: #222222;
+    margin: 0 0 3px 0;
+  }
+
+  .timings-line {
+    font-size: 12px;
+    font-weight: bold;
+    color: #222222;
+    margin: 0 0 3px 0;
+  }
+
+  .sunday-closed {
+    font-size: 12px;
+    font-weight: bold;
+    color: #b31b25; /* Red highlight as on letterhead */
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="letterhead-header">
+    <div class="clinic-branding-row">
+      {{#logo_uri}}
+      <img src="{{logo_uri}}" class="clinic-logo" alt="Logo">
+      {{/logo_uri}}
+      <div class="clinic-title-block">
+        <h1 class="clinic-name">{{clinic.name}}</h1>
+        <p class="clinic-address">{{clinic.address}}</p>
+      </div>
+    </div>
+
+    <div class="doctors-row">
+      <div class="doc-left">
+        <div class="doc-name">{{clinic.doctor_left.name}}</div>
+        <div class="doc-sub">{{clinic.doctor_left.qualifications}}</div>
+        <div class="doc-sub">{{clinic.doctor_left.regn_no}}</div>
+      </div>
+      <div class="doc-right">
+        <div class="doc-name">{{clinic.doctor_right.name}}</div>
+        <div class="doc-sub">{{clinic.doctor_right.qualifications}}</div>
+        <div class="doc-sub">{{clinic.doctor_right.regn_no}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PATIENT INFO STRIP -->
+  <div class="patient-strip">
+    <table class="patient-table">
+      <tr>
+        <td class="pt-label">Patient ID:</td>
+        <td class="pt-val" style="color: #b31b25;">{{patient.patient_code}}</td>
+        <td class="pt-label">Prescription No:</td>
+        <td class="pt-val">{{prescription.prescription_code}}</td>
+        <td class="pt-label">Date:</td>
+        <td class="pt-val">{{consultation.formatted_date}}</td>
+      </tr>
+      <tr>
+        <td class="pt-label">Patient Name:</td>
+        <td class="pt-val" style="font-size: 13.5px;">{{patient.full_name}}</td>
+        <td class="pt-label">Age / Gender:</td>
+        <td class="pt-val">{{patient.age_gender}}</td>
+        <td class="pt-label">Phone:</td>
+        <td class="pt-val">{{patient.phone}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- CLINICAL EXAMINATION & VITALS -->
+  <div class="clinical-summary">
+    {{#consultation.vitals_line}}
+    <div class="clinical-line">
+      <span class="section-tag">Vitals</span>
+      <span>{{consultation.vitals_line}}</span>
+    </div>
+    {{/consultation.vitals_line}}
+
+    {{#consultation.chief_complaints}}
+    <div class="clinical-line">
+      <span class="section-tag">Complaints</span>
+      <span>{{consultation.chief_complaints}}</span>
+    </div>
+    {{/consultation.chief_complaints}}
+
+    {{#consultation.diagnosis}}
+    <div class="clinical-line">
+      <span class="section-tag">Diagnosis</span>
+      <span style="font-weight: bold; color: #1e293b;">{{consultation.diagnosis}}</span>
+    </div>
+    {{/consultation.diagnosis}}
+
+    {{#consultation.observations}}
+    <div class="clinical-line">
+      <span class="section-tag">Observations</span>
+      <span>{{consultation.observations}}</span>
+    </div>
+    {{/consultation.observations}}
+
+    {{#consultation.investigations}}
+    <div class="clinical-line">
+      <span class="section-tag">Investigations</span>
+      <span>{{consultation.investigations}}</span>
+    </div>
+    {{/consultation.investigations}}
+  </div>
+
+  <!-- MEDICINES (Rx) -->
+  <div>
+    <span class="rx-heading">&#8478;</span>
+    <table class="meds-table">
+      <thead>
+        <tr>
+          <th style="width: 5%;">#</th>
+          <th style="width: 40%;">Medicine</th>
+          <th style="width: 18%;">Dosage</th>
+          <th style="width: 15%;">Duration</th>
+          <th style="width: 22%;">Instructions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#medicines}}
+        <tr>
+          <td>{{index}}</td>
+          <td>
+            <span class="med-name">{{medicine_name}}</span>
+            {{#strength_form}}<span class="med-form">{{strength_form}}</span>{{/strength_form}}
+          </td>
+          <td class="med-dosage">{{dosage}}</td>
+          <td>{{duration_unit}}</td>
+          <td class="med-instructions">{{instructions}}</td>
+        </tr>
+        {{/medicines}}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- REMARKS & FOLLOW-UP -->
+  <div class="bottom-clinical-block">
+    {{#consultation.remarks}}
+    <div class="advice-line">
+      <b>Advice / Remarks:</b> {{consultation.remarks}}
+    </div>
+    {{/consultation.remarks}}
+
+    {{#consultation.follow_up_date}}
+    <div class="advice-line">
+      <b>Follow-up:</b> {{consultation.follow_up_date}}
+    </div>
+    {{/consultation.follow_up_date}}
+  </div>
+
+  <!-- AUTHORISED SIGNATURE -->
+  <div class="signature-row">
+    <div class="signature-box">
+      <div class="signature-line"></div>
+      <div class="signature-text">Authorised Signature</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="letterhead-footer">
+    <p class="contact-line">Contact: {{clinic.phones}}</p>
+    <p class="timings-line">Timings: {{clinic.timings}},</p>
+    <p class="sunday-closed">{{clinic.closed_days}}</p>
+  </div>
+
+</body>
+</html>

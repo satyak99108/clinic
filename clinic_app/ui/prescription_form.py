@@ -37,6 +37,7 @@ from clinic_app.services import patient_service, prescription_service
 from clinic_app.services.prescription_service import PrescriptionServiceError
 from clinic_app.ui.medicine_row_widget import MedicineRowWidget
 from clinic_app.ui.message_bar import MessageBar
+from clinic_app.ui.prescription_preview_dialog import PrescriptionPreviewDialog
 from clinic_app.ui.prescription_review_dialog import PrescriptionReviewDialog
 
 
@@ -250,6 +251,10 @@ class PrescriptionFormView(QWidget):
         self._draft_btn.setObjectName("secondary_btn")
         self._draft_btn.clicked.connect(self._save_draft)
 
+        self._preview_btn = QPushButton("👁 Preview Layout")
+        self._preview_btn.setObjectName("secondary_btn")
+        self._preview_btn.clicked.connect(self._preview_current_prescription)
+
         self._finalize_btn = QPushButton("✔ Review & Finalize Prescription")
         self._finalize_btn.setObjectName("primary_btn")
         self._finalize_btn.setMinimumWidth(240)
@@ -258,6 +263,7 @@ class PrescriptionFormView(QWidget):
         actions_row.addWidget(self._clear_btn)
         actions_row.addStretch()
         actions_row.addWidget(self._draft_btn)
+        actions_row.addWidget(self._preview_btn)
         actions_row.addWidget(self._finalize_btn)
         self._layout.addLayout(actions_row)
 
@@ -391,6 +397,29 @@ class PrescriptionFormView(QWidget):
         except Exception as e:
             self._show_error("Failed to save draft. Please check the entered data.")
 
+    def _preview_current_prescription(self):
+        """Preview current entered data using the exact clinic template."""
+        self._clear_messages()
+        if not self._selected_patient:
+            self._show_error("Please select a patient to preview the prescription layout.")
+            return
+
+        c_data, meds = self._collect_data()
+        # Create a temporary draft object in DB so it can be previewed
+        try:
+            presc = prescription_service.save_consultation_and_prescription(
+                patient_id=self._selected_patient.id,
+                consultation_data=c_data,
+                medicines_data=meds,
+                is_finalized=False,
+                prescription_id=self._current_prescription_id,
+            )
+            self._current_prescription_id = presc.id
+            dialog = PrescriptionPreviewDialog(presc, self)
+            dialog.exec()
+        except Exception as e:
+            self._show_error(f"Could not open preview: {str(e)}")
+
     def _finalize_prescription(self):
         self._clear_messages()
         if not self._selected_patient:
@@ -427,6 +456,10 @@ class PrescriptionFormView(QWidget):
                 )
                 self.prescription_saved.emit(presc)
                 self.reset_form()
+
+                # Automatically open the Print / PDF preview dialog!
+                preview_dlg = PrescriptionPreviewDialog(presc, self)
+                preview_dlg.exec()
             except PrescriptionServiceError as e:
                 self._show_error(str(e))
             except Exception:
