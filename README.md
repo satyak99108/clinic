@@ -41,6 +41,7 @@ Before running the application, ensure you have:
 ## 🚀 Setup & Installation for Developers
 
 ### 1. Clone the repository
+
 ```bash
 git clone <repository_url>
 cd "Digital Prescription"
@@ -49,27 +50,31 @@ cd "Digital Prescription"
 ### 2. Create and activate a Virtual Environment (Recommended)
 
 **On Windows (PowerShell):**
+
 ```powershell
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 ```
 
 **On Windows (Command Prompt - CMD):**
+
 ```cmd
 python -m venv venv
 .\venv\Scripts\activate.bat
 ```
 
-> *Tip: If PowerShell gives an execution policy error, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` and then run the activate command again.*
+> _Tip: If PowerShell gives an execution policy error, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` and then run the activate command again._
 
 ### 3. Install Required Dependencies
 
 Install the required Python packages specified in `requirements.txt`:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-*Direct package installation (if preferred):*
+_Direct package installation (if preferred):_
+
 ```bash
 pip install PySide6 SQLAlchemy
 ```
@@ -85,6 +90,7 @@ python app.py
 ```
 
 The application will:
+
 1. Initialize the SQLite database automatically in `%APPDATA%\BDMedicalCenter\clinic.db`.
 2. Seed the initial medicine catalogue if it's the first run.
 3. Open the desktop UI window ready for use.
@@ -143,5 +149,5 @@ Digital Prescription/
 - [x] **Phase 2:** Patient Management (SQLite Backend)
 - [x] **Phase 3:** Consultation & Prescription Builder
 - [x] **Phase 4:** Prescription Template, PDF Generation & Printing
-- [ ] **Phase 5:** Prescription History & Retrieval
+- [x] **Phase 5:** Prescription History & Retrieval
 - [ ] **Phase 6:** Clinic Settings, Backup/Restore, Security & Windows Packaging

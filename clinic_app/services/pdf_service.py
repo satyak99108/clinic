@@ -155,16 +155,19 @@ def export_prescription_pdf(
     doc = QTextDocument()
     doc.setHtml(html)
 
-    printer = QPrinter(QPrinter.PrinterMode.HighResolution)
+    # Use ScreenResolution (96 DPI) so that standard CSS pixel font sizes (14px, 16px, 30px)
+    # render with their intended large proportions on an A4 page instead of HighResolution (600 DPI)
+    # which shrinks 14px to tiny 1/40 inch text.
+    printer = QPrinter(QPrinter.PrinterMode.ScreenResolution)
     printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
     printer.setOutputFileName(str(output_path))
     printer.setPageSize(QPageSize(QPageSize.PageSizeId.A4))
     printer.setPageOrientation(QPageLayout.Orientation.Portrait)
-    printer.setPageMargins(QMarginsF(10, 10, 10, 10), QPageLayout.Unit.Millimeter)
+    printer.setPageMargins(QMarginsF(12, 12, 12, 12), QPageLayout.Unit.Millimeter)
 
-    # Set document size to match printer page rect in points
-    rect = printer.pageLayout().paintRectPixels(printer.resolution())
-    doc.setPageSize(QSizeF(rect.width(), rect.height()))
+    # Set document size to match printer paintable pixels at 96 DPI (~703 x 1032 px)
+    paint_pixels = printer.pageLayout().paintRectPixels(printer.resolution())
+    doc.setPageSize(QSizeF(paint_pixels.width(), paint_pixels.height()))
 
     doc.print_(printer)
     return str(Path(output_path).resolve())
@@ -180,10 +183,10 @@ def print_prescription_dialog(
     """
     from PySide6.QtPrintSupport import QPrintDialog
 
-    printer = QPrinter(QPrinter.PrinterMode.HighResolution)
+    printer = QPrinter(QPrinter.PrinterMode.ScreenResolution)
     printer.setPageSize(QPageSize(QPageSize.PageSizeId.A4))
     printer.setPageOrientation(QPageLayout.Orientation.Portrait)
-    printer.setPageMargins(QMarginsF(10, 10, 10, 10), QPageLayout.Unit.Millimeter)
+    printer.setPageMargins(QMarginsF(12, 12, 12, 12), QPageLayout.Unit.Millimeter)
 
     dialog = QPrintDialog(printer, parent)
     dialog.setWindowTitle("Print Prescription")
@@ -191,8 +194,8 @@ def print_prescription_dialog(
         html = render_prescription_html(prescription, clinic)
         doc = QTextDocument()
         doc.setHtml(html)
-        rect = printer.pageLayout().paintRectPixels(printer.resolution())
-        doc.setPageSize(QSizeF(rect.width(), rect.height()))
+        paint_pixels = printer.pageLayout().paintRectPixels(printer.resolution())
+        doc.setPageSize(QSizeF(paint_pixels.width(), paint_pixels.height()))
         doc.print_(printer)
         return True
     return False

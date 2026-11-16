@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (
 )
 
 
-def _stat_card(icon: str, label: str, value: str) -> QFrame:
+def _stat_card(icon: str, label: str, value: str) -> tuple[QFrame, QLabel]:
     card = QFrame()
     card.setObjectName("stat_card")
     card.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
@@ -49,7 +49,7 @@ def _stat_card(icon: str, label: str, value: str) -> QFrame:
     row.addLayout(text_col)
     row.addStretch()
 
-    return card
+    return card, val
 
 
 def _shortcut_button(icon: str, label: str) -> QPushButton:
@@ -100,9 +100,14 @@ class DashboardView(QWidget):
         # ---- Stat cards row ------------------------------------------
         stats_grid = QGridLayout()
         stats_grid.setSpacing(16)
-        stats_grid.addWidget(_stat_card("👤", "Patients Registered", "—"), 0, 0)
-        stats_grid.addWidget(_stat_card("📋", "Prescriptions Today",  "—"), 0, 1)
-        stats_grid.addWidget(_stat_card("📅", "Consultations Total",  "—"), 0, 2)
+
+        c1, self._stat_pts = _stat_card("👤", "Patients Registered", "—")
+        c2, self._stat_rx_today = _stat_card("📋", "Prescriptions Today", "—")
+        c3, self._stat_consultations = _stat_card("📅", "Consultations Total", "—")
+
+        stats_grid.addWidget(c1, 0, 0)
+        stats_grid.addWidget(c2, 0, 1)
+        stats_grid.addWidget(c3, 0, 2)
 
         layout.addLayout(stats_grid)
 
@@ -137,3 +142,28 @@ class DashboardView(QWidget):
 
         scroll.setWidget(content)
         outer.addWidget(scroll)
+
+    def on_section_activated(self):
+        """Refresh dashboard statistics from the database."""
+        self._refresh_stats()
+
+    def _refresh_stats(self):
+        try:
+            from clinic_app.database.connection import get_session
+            from clinic_app.models.patient import Patient
+            from clinic_app.models.consultation import Consultation
+            from clinic_app.models.prescription import Prescription
+            from datetime import date
+
+            with get_session() as s:
+                pt_count = s.query(Patient).filter(Patient.is_active == True).count()
+                consult_count = s.query(Consultation).count()
+
+                today_start = date.today()
+                rx_today = s.query(Prescription).filter(Prescription.created_at >= today_start).count()
+
+                self._stat_pts.setText(str(pt_count))
+                self._stat_rx_today.setText(str(rx_today))
+                self._stat_consultations.setText(str(consult_count))
+        except Exception:
+            pass

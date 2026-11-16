@@ -386,12 +386,12 @@ prescriptions.
 
 ### Tasks
 
-- [ ] Show consultation history inside the patient profile.
-- [ ] Show prescription date and prescription ID.
-- [ ] Open a past prescription in read-only mode.
-- [ ] Reprint or export a previous prescription.
-- [ ] Search prescriptions by patient ID, name, or date.
-- [ ] Clearly distinguish drafts from finalized prescriptions.
+- [x] Show consultation history inside the patient profile.
+- [x] Show prescription date and prescription ID.
+- [x] Open a past prescription in read-only mode.
+- [x] Reprint or export a previous prescription.
+- [x] Search prescriptions by patient ID, name, or date.
+- [x] Clearly distinguish drafts from finalized prescriptions.
 
 ### Data integrity rule
 

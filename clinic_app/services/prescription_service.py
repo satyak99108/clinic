@@ -249,10 +249,57 @@ def get_patient_consultations(patient_id: int) -> list[Consultation]:
     with get_session() as session:
         items = (
             session.query(Consultation)
-            .options(joinedload(Consultation.prescriptions).joinedload(Prescription.items))
+            .options(
+                joinedload(Consultation.prescriptions).joinedload(Prescription.items),
+                joinedload(Consultation.prescriptions).joinedload(Prescription.patient),
+            )
             .filter(Consultation.patient_id == patient_id)
             .order_by(Consultation.consultation_date.desc(), Consultation.id.desc())
             .all()
         )
         session.expunge_all()
         return items
+
+
+def search_all_prescriptions(query: str = "", status_filter: str = "All") -> list[Prescription]:
+    """
+    Search all prescriptions by:
+    - Patient Name
+    - Patient Code (e.g. PT-00001)
+    - Prescription Code (e.g. RX-2026-0001)
+    - Date string (YYYY-MM-DD or partial)
+    - Status ("All", "Finalized", "Draft")
+    """
+    from sqlalchemy import or_
+    from clinic_app.models.patient import Patient
+
+    with get_session() as session:
+        base = (
+            session.query(Prescription)
+            .join(Prescription.patient)
+            .join(Prescription.consultation)
+            .options(
+                joinedload(Prescription.patient),
+                joinedload(Prescription.consultation),
+                joinedload(Prescription.items),
+            )
+        )
+
+        if status_filter and status_filter != "All":
+            base = base.filter(Prescription.status == status_filter)
+
+        q_clean = query.strip()
+        if q_clean:
+            pattern = f"%{q_clean}%"
+            base = base.filter(
+                or_(
+                    Patient.full_name.ilike(pattern),
+                    Patient.patient_code.ilike(pattern),
+                    Prescription.prescription_code.ilike(pattern),
+                    Consultation.diagnosis.ilike(pattern),
+                )
+            )
+
+        results = base.order_by(Prescription.created_at.desc(), Prescription.id.desc()).all()
+        session.expunge_all()
+        return results

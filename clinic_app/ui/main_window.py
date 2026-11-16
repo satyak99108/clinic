@@ -127,7 +127,7 @@ class MainWindow(QMainWindow):
         layout.addStretch()
 
         # Version label at bottom of sidebar
-        ver = QLabel("v0.4.0 · Phase 4")
+        ver = QLabel("v0.5.0 · Phase 5")
         ver.setObjectName("sidebar_subtitle")
         ver.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(ver)

@@ -3,18 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  @page {
-    size: A4 portrait;
-    margin: 12mm 15mm 15mm 15mm;
-  }
-
   body {
     font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-    color: #1a1a1a;
+    color: #111111;
     margin: 0;
     padding: 0;
-    font-size: 13px;
-    line-height: 1.4;
+    font-size: 14px;
+    line-height: 1.5;
     background: #ffffff;
   }
 
@@ -22,72 +17,77 @@
      HEADER (Exact match to B.D. Medical Centre Letterhead)
      ============================================================== */
   .letterhead-header {
-    border-bottom: 2px solid #222222;
-    padding-bottom: 8px;
-    margin-bottom: 12px;
+    border-bottom: 2.5px solid #222222;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
   }
 
-  .clinic-branding-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  .clinic-branding-table {
+    width: 100%;
+    border-collapse: collapse;
     margin-bottom: 8px;
   }
 
+  .clinic-logo-cell {
+    width: 80px;
+    vertical-align: middle;
+    text-align: left;
+  }
+
   .clinic-logo {
-    position: absolute;
-    left: 10px;
-    top: -2px;
-    width: 65px;
-    height: 65px;
+    width: 75px;
+    height: 75px;
     object-fit: contain;
     border-radius: 50%;
   }
 
-  .clinic-title-block {
+  .clinic-title-cell {
     text-align: center;
+    vertical-align: middle;
   }
 
   .clinic-name {
-    font-size: 26px;
+    font-size: 30px;
     font-weight: 800;
-    color: #b31b25; /* Red branding from sample */
-    letter-spacing: 0.5px;
+    color: #b31b25; /* Exact Red branding from letterhead */
+    letter-spacing: 0.8px;
     margin: 0 0 4px 0;
   }
 
   .clinic-address {
-    font-size: 12px;
+    font-size: 13.5px;
     font-weight: bold;
     color: #333333;
     margin: 0;
   }
 
-  .doctors-row {
-    display: flex;
-    justify-content: space-between;
+  .doctors-table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 10px;
-    padding: 0 4px;
   }
 
-  .doc-left {
+  .doc-left-cell {
     text-align: left;
+    vertical-align: top;
+    width: 50%;
   }
 
-  .doc-right {
+  .doc-right-cell {
     text-align: right;
+    vertical-align: top;
+    width: 50%;
   }
 
   .doc-name {
-    font-size: 14px;
+    font-size: 15.5px;
     font-weight: bold;
     color: #b31b25;
     margin: 0 0 2px 0;
   }
 
   .doc-sub {
-    font-size: 11.5px;
+    font-size: 12.5px;
     font-weight: bold;
     color: #222222;
     margin: 0 0 1px 0;
@@ -97,33 +97,33 @@
      PATIENT STRIP & VITALS
      ============================================================== */
   .patient-strip {
-    background-color: #f7f9fc;
-    border: 1px solid #dce2ee;
+    background-color: #f8fafc;
+    border: 1.5px solid #cbd5e1;
     border-radius: 6px;
-    padding: 8px 12px;
-    margin-bottom: 12px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
   }
 
   .patient-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 12px;
+    font-size: 13.5px;
   }
 
   .patient-table td {
-    padding: 3px 6px;
+    padding: 4px 6px;
     vertical-align: top;
   }
 
   .pt-label {
     font-weight: bold;
-    color: #555555;
-    width: 90px;
+    color: #475569;
+    width: 110px;
   }
 
   .pt-val {
     font-weight: 600;
-    color: #111111;
+    color: #0f172a;
   }
 
   /* ==============================================================
@@ -134,20 +134,20 @@
   }
 
   .section-tag {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #4a5568;
-    background: #edf2f7;
+    color: #334155;
+    background: #e2e8f0;
     display: inline-block;
-    padding: 2px 6px;
-    border-radius: 3px;
-    margin-right: 6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
   }
 
   .clinical-line {
-    margin: 4px 0;
-    font-size: 12.5px;
+    margin: 5px 0;
+    font-size: 13.5px;
   }
 
   /* ==============================================================
@@ -155,64 +155,64 @@
      ============================================================== */
   .rx-heading {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 26px;
+    font-size: 32px;
     font-weight: bold;
     color: #b31b25;
-    margin: 8px 0 6px 0;
+    margin: 10px 0 6px 0;
     display: inline-block;
   }
 
   .meds-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 4px;
-    margin-bottom: 18px;
+    margin-top: 6px;
+    margin-bottom: 20px;
   }
 
   .meds-table th {
-    background-color: #f1f4f9;
-    color: #334155;
-    font-size: 11px;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    font-size: 12.5px;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-top: 1px solid #cbd5e1;
-    border-bottom: 1.5px solid #94a3b8;
-    padding: 6px 8px;
+    border-top: 1.5px solid #94a3b8;
+    border-bottom: 2px solid #64748b;
+    padding: 8px 10px;
     text-align: left;
   }
 
   .meds-table td {
-    padding: 8px 8px;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 10px 10px;
+    border-bottom: 1px solid #cbd5e1;
     vertical-align: middle;
-    font-size: 12.5px;
+    font-size: 13.5px;
   }
 
   .med-name {
     font-weight: bold;
     color: #0f172a;
-    font-size: 13px;
+    font-size: 14.5px;
   }
 
   .med-form {
     display: inline-block;
     background-color: #e2e8f0;
     color: #334155;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: bold;
-    padding: 1px 5px;
-    border-radius: 3px;
-    margin-left: 4px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
   }
 
   .med-dosage {
-    font-weight: 600;
+    font-weight: 700;
     color: #1e3a8a;
   }
 
   .med-instructions {
-    color: #475569;
+    color: #334155;
     font-style: italic;
   }
 
@@ -220,65 +220,65 @@
      ADVICE, REMARKS, FOLLOW-UP & SIGNATURE
      ============================================================== */
   .bottom-clinical-block {
-    margin-top: 10px;
-    margin-bottom: 40px;
+    margin-top: 12px;
+    margin-bottom: 45px;
   }
 
   .advice-line {
-    margin: 5px 0;
-    font-size: 12.5px;
+    margin: 6px 0;
+    font-size: 13.5px;
   }
 
-  .signature-row {
-    display: flex;
-    justify-content: flex-end;
+  .signature-table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 35px;
-    padding-right: 20px;
+    margin-bottom: 25px;
   }
 
   .signature-box {
     text-align: center;
-    width: 200px;
+    width: 220px;
   }
 
   .signature-line {
-    border-top: 1.5px solid #444444;
-    margin-bottom: 4px;
+    border-top: 1.5px solid #333333;
+    margin-bottom: 5px;
   }
 
   .signature-text {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
-    color: #333333;
+    color: #222222;
   }
 
   /* ==============================================================
      FOOTER (Exact match to B.D. Medical Centre Letterhead)
      ============================================================== */
   .letterhead-footer {
-    border-top: 1.5px solid #222222;
-    padding-top: 6px;
+    border-top: 2px solid #222222;
+    padding-top: 8px;
     text-align: center;
     position: relative;
-    margin-top: 25px;
+    margin-top: 30px;
   }
 
   .contact-line {
-    font-size: 12.5px;
+    font-size: 13.5px;
     font-weight: bold;
     color: #222222;
     margin: 0 0 3px 0;
   }
 
   .timings-line {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     color: #222222;
     margin: 0 0 3px 0;
   }
 
   .sunday-closed {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     color: #b31b25; /* Red highlight as on letterhead */
     margin: 0;
@@ -289,28 +289,34 @@
 
   <!-- HEADER -->
   <div class="letterhead-header">
-    <div class="clinic-branding-row">
-      {{#logo_uri}}
-      <img src="{{logo_uri}}" class="clinic-logo" alt="Logo">
-      {{/logo_uri}}
-      <div class="clinic-title-block">
-        <h1 class="clinic-name">{{clinic.name}}</h1>
-        <p class="clinic-address">{{clinic.address}}</p>
-      </div>
-    </div>
+    <table class="clinic-branding-table">
+      <tr>
+        {{#logo_uri}}
+        <td class="clinic-logo-cell">
+          <img src="{{logo_uri}}" class="clinic-logo" alt="Logo">
+        </td>
+        {{/logo_uri}}
+        <td class="clinic-title-cell">
+          <h1 class="clinic-name">{{clinic.name}}</h1>
+          <p class="clinic-address">{{clinic.address}}</p>
+        </td>
+      </tr>
+    </table>
 
-    <div class="doctors-row">
-      <div class="doc-left">
-        <div class="doc-name">{{clinic.doctor_left.name}}</div>
-        <div class="doc-sub">{{clinic.doctor_left.qualifications}}</div>
-        <div class="doc-sub">{{clinic.doctor_left.regn_no}}</div>
-      </div>
-      <div class="doc-right">
-        <div class="doc-name">{{clinic.doctor_right.name}}</div>
-        <div class="doc-sub">{{clinic.doctor_right.qualifications}}</div>
-        <div class="doc-sub">{{clinic.doctor_right.regn_no}}</div>
-      </div>
-    </div>
+    <table class="doctors-table">
+      <tr>
+        <td class="doc-left-cell">
+          <div class="doc-name">{{clinic.doctor_left.name}}</div>
+          <div class="doc-sub">{{clinic.doctor_left.qualifications}}</div>
+          <div class="doc-sub">{{clinic.doctor_left.regn_no}}</div>
+        </td>
+        <td class="doc-right-cell">
+          <div class="doc-name">{{clinic.doctor_right.name}}</div>
+          <div class="doc-sub">{{clinic.doctor_right.qualifications}}</div>
+          <div class="doc-sub">{{clinic.doctor_right.regn_no}}</div>
+        </td>
+      </tr>
+    </table>
   </div>
 
   <!-- PATIENT INFO STRIP -->
@@ -326,7 +332,7 @@
       </tr>
       <tr>
         <td class="pt-label">Patient Name:</td>
-        <td class="pt-val" style="font-size: 13.5px;">{{patient.full_name}}</td>
+        <td class="pt-val" style="font-size: 14.5px;">{{patient.full_name}}</td>
         <td class="pt-label">Age / Gender:</td>
         <td class="pt-val">{{patient.age_gender}}</td>
         <td class="pt-label">Phone:</td>
@@ -419,12 +425,17 @@
   </div>
 
   <!-- AUTHORISED SIGNATURE -->
-  <div class="signature-row">
-    <div class="signature-box">
-      <div class="signature-line"></div>
-      <div class="signature-text">Authorised Signature</div>
-    </div>
-  </div>
+  <table class="signature-table">
+    <tr>
+      <td></td>
+      <td style="width: 220px;">
+        <div class="signature-box">
+          <div class="signature-line"></div>
+          <div class="signature-text">Authorised Signature</div>
+        </div>
+      </td>
+    </tr>
+  </table>
 
   <!-- FOOTER -->
   <div class="letterhead-footer">
